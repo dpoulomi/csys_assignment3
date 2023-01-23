@@ -23,24 +23,17 @@ struct process_t
 
 // Enqueue() operation on a queue
 
-void queue_init(struct queue_t* q, size_t dataSize)
-{
-    printf("Queue init starts");
-    q = (struct queue_t *)malloc(sizeof(struct queue_t));
-    q->blockSize = dataSize;
-    q->front = NULL;
-    q->rear = NULL;
-    printf("Queue init finishes");
-}
-
 void enqueue(struct queue_t *queue, void *value)
 {
     struct node *ptr;
     ptr = (struct node *)malloc(sizeof(struct node));
-    printf("block size : %d" , queue->blockSize);
-    ptr->data = malloc(queue->blockSize);
-    printf("size of value :: %d and value is :  %s\n", queue->blockSize, value);
-    memcpy(ptr->data, value, queue->blockSize);
+    
+    int blockSize = strlen((char *)value);
+    printf("block size : %d" , blockSize);
+
+    ptr->data = malloc(blockSize);
+    printf("size of value :: %d and value is :  %s\n", blockSize, value);
+    memcpy(ptr->data, value, blockSize);
     ptr->next = NULL;
     if (queue->front == NULL && queue->rear == NULL)
     {

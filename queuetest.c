@@ -37,7 +37,7 @@ int main()
     //operations on process_t
     queue = NULL;
     queue = createProcessQueue();
-    qsize(queue);
+    // qsize(queue);
     // displayProcess(queue);
     // displayProcessQueue(queue);
 }
@@ -55,12 +55,12 @@ struct queue_t *createProcessQueue()
     queue->rear = NULL;
     queue->blockSize = sizeof(process_t);
 
-    process1 = (struct process_t *)malloc(sizeof(struct process_t));
-    process1->name = "Process_1";
-    process1->identifier = 1;
-    process1->priority = 1;
-    queue->blockSize = sizeof(process1);
-    enqueue(queue, process1);
+    process3 = (struct process_t *)malloc(sizeof(struct process_t));
+    process3->name = "Process_3";
+    process3->identifier = 3;
+    process3->priority = 3;
+    queue->blockSize = sizeof(process3);
+    enqueue(queue, process3);
 
     process2 = (struct process_t *)malloc(sizeof(struct process_t));
     process2->name = "Process_2";
@@ -69,20 +69,20 @@ struct queue_t *createProcessQueue()
     queue->blockSize = sizeof(process2);
     enqueue(queue, process2);
 
-    process3 = (struct process_t *)malloc(sizeof(struct process_t));
-    process3->name = "Process_3";
-    process3->identifier = 3;
-    process3->priority = 3;
-    queue->blockSize = sizeof(process3);
-    enqueue(queue, process3);
+    process1 = (struct process_t *)malloc(sizeof(struct process_t));
+    process1->name = "Process_1";
+    process1->identifier = 1;
+    process1->priority = 1;
+    queue->blockSize = sizeof(process1);
+    enqueue(queue, process1);
+
     displayProcess(queue);
     
-    printf("Dequeue operation on process queue ");
-    // dequeue(queue);
-    // displayProcess(queue);
-    printf("test12");
     dequeueProcess(queue);
+
     displayProcess(queue);
+
+    qsize(queue);
     return queue;
 }
 
@@ -97,10 +97,10 @@ void displayProcess(struct queue_t *queue) {
         printf("The queue is \n");
         while (temp != NULL) {
             prc = (struct process_t *)(temp->data);
-            printf("Identifier,Priority,Name( %d , %d , %s )--->", prc->identifier, prc->priority, prc->name);
+            printf("( %d , %d , %s )--->", prc->identifier, prc->priority, prc->name);
             temp = temp->next;
         }
-        printf("NULL\n\n");
+        printf("NULLLLLLLLL\n\n");
     }
 }
 
@@ -110,7 +110,6 @@ void displayProcess(struct queue_t *queue) {
     printf("Popped element is :%s\n", dequeue(queue));
     if (queue == NULL)
     {
-       
         queue = (struct queue_t *)malloc(sizeof(struct queue_t));
         queue->front = NULL;
         queue->rear = NULL;

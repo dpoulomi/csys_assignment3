@@ -144,7 +144,6 @@ int qsize(struct queue_t *queue)
 
 struct process_t *dequeueProcess(struct queue_t *queue)
 {
-    printf("Whats wrong0?");
     if (queue == NULL)
     {
         printf("\nUnderflow\n");
@@ -156,15 +155,17 @@ struct process_t *dequeueProcess(struct queue_t *queue)
         struct process_t *prc;
         struct node *nodeToDelete;
         int priority_of_process;
-        printf("Whats wrong0?");
+        printf("in else");
+        fflush(stdout);
+        
         temp = queue->front;
 
         prc = (struct process_t *)(temp->data);
         priority_of_process = prc->priority;
-        printf("Whats wrong?");
+        printf("after priority_of_process assignment\n");
+        fflush(stdout);
         nodeToDelete = temp;
-        printf("Whats wrong?1");
-        //         printf("The queue is \n");
+        
         while (temp != NULL)
         {
             prc = (struct process_t *)(temp->data);
@@ -172,11 +173,13 @@ struct process_t *dequeueProcess(struct queue_t *queue)
             {
                 priority_of_process = prc->priority;
                 nodeToDelete = temp;
-                printf("test");
+                printf("test\n");
+                fflush(stdout);
             }
             temp = temp->next;
         }
-
+        printf("after while \n");
+        fflush(stdout);
         // start code
         temp = queue->front;
         if (nodeToDelete->data == queue->front->data)
@@ -193,42 +196,12 @@ struct process_t *dequeueProcess(struct queue_t *queue)
             if(temp->next->data == queue->rear->data)
             {
                 queue->rear = temp;
-                queue->rear->next = nodeToDelete->next;
+                // queue->rear->next = nodeToDelete->next;
                  
             }
-             temp->next = temp->next->next;
-          
-            
+             temp->next = temp->next->next;  
         }
-
-        // end code
-        // if (queue->rear->data == nodeToDelete->data)
-        // {
-        //     printf("test2");
-        //     temp->next = NULL;
-        // }
-        // else
-        // {
-        //     printf("test3");
-        //     temp = queue->front;
-        //     if (queue->front == nodeToDelete)
-        //     {
-        //         printf("test4");
-        //         queue->front = queue->front->next;
-        //     }
-        //     else
-        //     {
-        //         while (temp->next != nodeToDelete)
-        //         {
-
-        //             temp = temp->next;
-        //         }
-        //         printf("test5");
-        //         temp->next = temp->next->next;
-        //     }
-        // }
-        // queue->front = queue->front->next;
-        free(temp);
+        // free(temp);
         return nodeToDelete;
     }
 }
